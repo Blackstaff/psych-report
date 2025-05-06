@@ -11,9 +11,7 @@ defmodule PsychReport.ReportGeneratorTest do
   end
 
   test "creates a report based on transcription" do
-    assert %{raw_response: %{"candidates" => _}, response: "This is a test."} =
-             ReportGenerator.create_report("foo")
-
+    assert ReportGenerator.create_report("foo") == {:ok, "This is a test."}         
     assert_called(Llm.call(prompt))
     assert prompt =~ "foo"
   end

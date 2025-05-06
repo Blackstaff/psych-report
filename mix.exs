@@ -54,6 +54,7 @@ defmodule PsychReport.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:google_ai, "~> 0.1.1"},
+      {:ollama, "~> 0.8.0"},
       # UUID generation
       {:uniq, "~> 0.6"},
       # Mocking

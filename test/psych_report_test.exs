@@ -11,7 +11,7 @@ defmodule PsychReportTest do
   setup do
     patch(AudioConverter, :convert_to_wav, "fake/path")
     patch(SpeechToText, :transform, {:ok, read_fixture("transcription.txt")})
-    patch(ReportGenerator, :create_report, %{raw_response: %{"foo" => "bar"}, response: "foobar"})
+    patch(ReportGenerator, :create_report, {:ok, "foobar"})
     :ok
   end
 
@@ -29,13 +29,6 @@ defmodule PsychReportTest do
 
     assert File.exists?(transcription_path)
     assert File.read!(transcription_path) =~ "Lorem ipsum"
-
-    raw_report_path =
-      Application.fetch_env!(:psych_report, :reports_dir)
-      |> Path.join("input/input_raw_response.json")
-
-    assert File.exists?(raw_report_path)
-    assert raw_report_path |> File.read!() |> Jason.decode!() == %{"foo" => "bar"}
 
     report_path =
       Application.fetch_env!(:psych_report, :reports_dir) |> Path.join("input/input_report.md")

@@ -36,7 +36,7 @@ defmodule SystemConfig do
   defp default("WHISPER_EXECUTABLE_PATH", _),
     do: Path.join(:code.priv_dir(:psych_report), "bin/whisper_linux")
 
-  defp default("PSYCH_REPORT_INITIAL_PROMPT", _),
+  defp default("PSYCH_REPORT_SYSTEM_PROMPT", _),
     do:
       "Oto zapis wywiadu lekarskiego pacjenta z psychiatrą. Napisz na jego podstawie raport oraz zalecenia dla pacjenta. Wywiad: "
 
@@ -46,7 +46,7 @@ defmodule SystemConfig do
   defp default("PSYCH_REPORT_REPORTS_DIR", _),
     do: Path.join(:code.priv_dir(:psych_report), "reports")
 
-  defp default("LLM_MODEL_NAME", _), do: "models/gemini-pro"
+  defp default("LLM_MODEL_NAME", _), do: "deepseek-r1:14b"
 
   defp default(key, env),
     do: raise("environment variable #{key} not set and no default for #{inspect(env)}")
@@ -63,7 +63,7 @@ config :psych_report,
   ffmpeg_path: SystemConfig.get("FFMPEG_PATH"),
   whisper_model_path: SystemConfig.get("WHISPER_MODEL_PATH"),
   whisper_executable_path: SystemConfig.get("WHISPER_EXECUTABLE_PATH"),
-  initial_prompt: SystemConfig.get("PSYCH_REPORT_INITIAL_PROMPT"),
+  system_prompt: SystemConfig.get("PSYCH_REPORT_SYSTEM_PROMPT"),
   llm_model_name: SystemConfig.get("LLM_MODEL_NAME"),
   reports_dir: SystemConfig.get("PSYCH_REPORT_REPORTS_DIR")
 

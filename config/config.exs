@@ -61,7 +61,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :psych_report, :speech_to_text_provider, PsychReport.SpeechToText.Whisperpp
-config :psych_report, :llm, PsychReport.Llm.Gemini
+config :psych_report, :llm, PsychReport.Llm.Ollama
 config :psych_report, :audio_converter, PsychReport.AudioConverter.Ffmpeg
 
 # Import environment specific config. This must remain at the bottom
